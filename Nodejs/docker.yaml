@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-docker
+spec:
+  steps:
+      - name: build
+        image: alpine/git
+        command:
+        - sh
+        - -c
+        - |
+          ls -al
+  volumeMounts:
+    - name: tekton-workspace
+      mountPath: /
