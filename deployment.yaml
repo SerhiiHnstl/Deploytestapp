@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodeapp-deployment
-  namespace: tekton-demo
   labels:
     app: nodeapp
 spec:
@@ -20,3 +19,17 @@ spec:
         image: kabanchikua/testtatsk:latest
         ports:
         - containerPort: 3000
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-deployment
+  labels:
+    app: nodeapp
+spec:
+  ports:
+    - port: 3000
+      name: http
+  selector:
+    app: nodeapp
